@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";import heropic from "../assets/heropic.webp";
 const HeroBanner = () => {
   return (
     <>
@@ -42,7 +42,7 @@ const HeroBanner = () => {
         </div>
         {/* Middle Part (Image) */}
         <div className="w-1/2 h-full">
-          <img src="/heropic.webp" alt="heropic" />
+          <img src={heropic} alt="heropic" />
         </div>
         {/* Right Part */}
         <div className="flex flex-col items-center justify-center gap-10">

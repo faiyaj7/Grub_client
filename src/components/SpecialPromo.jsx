@@ -1,8 +1,8 @@
 import React from "react";
-
+import promotion from "../assets/promotion.jpg";
 const SpecialPromo = () => {
   return (
-    <section className="flex items-center justify-center bg-black  w-full mt-20">
+    <section className="flex items-center justify-center bg-black  w-full ">
       {/* Left Side */}
       <div className="h-full p-20">
         <h4 className="font-merriweatherSans font-bold text-orange-400 ">
@@ -21,15 +21,15 @@ const SpecialPromo = () => {
           {/* discount price */}
           <div className="flex gap-2 items-center">
             <span className="text-orange-600 font-Arimo font-extrabold text-2xl">
-              200 BDT
+              $9.99
             </span>
-            <span className="font-Arimo text-sm text-white font-semibold">350 BDT</span>
+            <span className="font-Arimo text-sm text-white font-semibold">$14.99</span>
           </div>
         </div>
       </div>
       {/* Right Side (Image) */}
       <div className="w-[35%]">
-        <img src="/promotion.jpg" alt="promotion" />
+        <img src={promotion} alt="promotion" />
       </div>
     </section>
   );
