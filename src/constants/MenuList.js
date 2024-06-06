@@ -11,19 +11,19 @@ import Bertolli from "../assets/Bertolli.webp";
 import Cadburg from "../assets/Cadbury.webp";
 import Cheetos from "../assets/Cheetos.webp";
 import Ferrero_Rocher from "../assets/Ferrero_Rocher.webp";
-import app_store_badge from "../assets/app-store-badge.webp";
+
 import chicken_box_meal from "../assets/chicken_box_meal.webp";
 import chicken_breast from "../assets/chicken_breast.webp";
-import chicken_roast from "../assets/chicken_roast.png";
+
 import downloadappstore from "../assets/downloadappstore.webp";
 import downloadgooglestore from "../assets/downloadgooglestore.webp";
 import downloadgoogle from "../assets/downloadgoogle.webp";
-import heropic from "../assets/heropic.webp";
+
 import lobster from "../assets/lobster.webp";
 import mobiledownload from "../assets/mobiledownload.webp";
 import motorbike from "../assets/motorbike.webp";
 import nuggets from "../assets/nuggets.webp";
-import promotion from "../assets/promotion.jpg";
+
 import ribeye from "../assets/ribeye.webp";
 import saslik from "../assets/saslik.webp";
 import ribsteak from "../assets/ribsteak.webp";

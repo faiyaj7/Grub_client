@@ -3,7 +3,7 @@ import { recentArticles } from "../constants/MenuList";
 import { FaArrowRight } from "react-icons/fa6";
 const Article = () => {
   return (
-    <section className="bg-yellow-50 px-20 py-10">
+    <section className="bg-yellow-50 px-4 lg:px-20 pt-[40rem] lg:py-10">
       {/* Heading */}
       <h4 className="text-sm text-center text-orange-500 font-merriweatherSans">
         Recent Article
@@ -12,9 +12,9 @@ const Article = () => {
         Latest News & Blog
       </h1>
       {/* Articles Mapping */}
-      <div className="grid grid-cols-3 mx-auto gap-4 w-[75%]">
+      <div className="grid grid-cols-1 lg:grid-cols-3 mx-auto gap-4 w-full lg:w-[75%]">
         {recentArticles.map(({ date, desc, image }, index) => (
-          <div className="bg-white rounded-md h-fit">
+          <div className="bg-white rounded-md w-full h-fit" key={index}>
             <h4 className="font-merriweatherSans text-xs text-orange-600 font-bold px-6 pt-4">
               {date}
             </h4>

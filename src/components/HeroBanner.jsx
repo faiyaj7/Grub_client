@@ -1,11 +1,12 @@
 import React from "react";
-import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";import heropic from "../assets/heropic.webp";
+import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
+import heropic from "../assets/heropic.webp";
 const HeroBanner = () => {
   return (
     <>
-      <section className="h-screen flex items-center justify-around px-16 pt-20 ">
+      <section className="bg-yellow-50 lg:bg-white h-fit lg:h-screen flex items-center justify-around px-0 lg:px-16 pt-20 flex-col md:flex-row ">
         {/* Left Part */}
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 px-8 lg:px-0">
           <h6 className="font-anton text-sm text-orange-400">
             Medium 2-topping Burger
           </h6>
@@ -41,11 +42,12 @@ const HeroBanner = () => {
           </div>
         </div>
         {/* Middle Part (Image) */}
-        <div className="w-1/2 h-full">
+        {/* in mobile cumulative layout shift happing bcos of it proof found by commenting the image */}
+        <div className="w-4/5 lg:w-1/2 h-full order-first lg:order-none">
           <img src={heropic} alt="heropic" />
         </div>
         {/* Right Part */}
-        <div className="flex flex-col items-center justify-center gap-10">
+        <div className="hidden lg:flex flex-col items-center justify-center gap-10">
           <div className="flex items-center justify-around gap-14 text-right">
             <div className="w-4/5">
               <h1 className="font-anton">Great Location</h1>

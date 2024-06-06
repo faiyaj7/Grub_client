@@ -8,7 +8,7 @@ const Professionals = () => {
   return (
     <section className="bg-yellow-50 pt-20  ">
       {/* Top part */}
-      <div className="flex items-center justify-around ">
+      <div className="flex items-center justify-around px-4 lg:px-0 ">
         {/* Left part */}
         <div className="">
           <h4 className="font-merriweatherSans text-lg">Our Professionals</h4>
@@ -22,9 +22,9 @@ const Professionals = () => {
         </div>
       </div>
       {/* Bottom part */}
-      <div className="grid grid-cols-3 gap-5  w-4/5 mx-auto">
-        {professionalPeople.map(({ name, image, experience }) => (
-          <div className="h-full w-full bg-white">
+      <div className="grid grid-cols-1  lg:grid-cols-3 gap-5 pt-5 w-4/5 mx-auto">
+        {professionalPeople.map(({ name, image, experience },index) => (
+          <div className="h-full w-full bg-white" key={index}>
             <img
               src={image}
               alt="name"

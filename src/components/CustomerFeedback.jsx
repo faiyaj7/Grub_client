@@ -8,14 +8,14 @@ const CustomerFeedback = () => {
   return (
     <section className="relative w-full pt-20 bg-yellow-50">
       {/* Left Side */}
-      <div className="w-2/3 bg-black/85 pl-20 py-20 rounded-r-2xl">
+      <div className="w-full lg:w-2/3 bg-black/85 px-5 lg:pl-20 py-20 rounded-r-2xl">
         <h3 className="text-orange-500 font-merriweatherSans">
           Customer Feedback
         </h3>
         <h1 className="font-anton text-4xl text-white py-4">
           What do our clients say?
         </h1>
-        <p className="text-white font-Arimo font-medium w-1/2">
+        <p className="text-white font-Arimo font-medium w-full lg:w-1/2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
           perferendis eligendi explicabo! Consectetur praesentium aliquam
           distinctio dolor necessitatibus laboriosam itaque!
@@ -48,10 +48,10 @@ const CustomerFeedback = () => {
         </div>
       </div>
       {/* Right Side (Customer Feedback) */}
-      <div className="absolute top-[60%] -translate-y-[50%] right-10 grid grid-cols-2 w-1/2 gap-4">
+      <div className="absolute top-[90%] lg:top-[60%] lg:-translate-y-[50%] lg:right-10 grid grid-cols-1 lg:grid-cols-2 w-full lg:w-1/2 h-fit gap-4 px-4">
         {customerFeedback.map(({ name, position, rating, desc, image }) => (
           /* Customer */
-          <div className="bg-white w-full p-6 rounded-lg shadow-xl">
+          <div className="bg-white w-full p-6 rounded-lg shadow-xl" key={name}>
             {/* Top part */}
             <div className="flex items-center justify-between">
               <img
@@ -61,7 +61,7 @@ const CustomerFeedback = () => {
                 height={100}
                 className="rounded-md"
               />
-              <FaQuoteRight className="text-orange-500"/>
+              <FaQuoteRight className="text-orange-500" />
             </div>
             {/* Middle part (Description) */}
             <p className="w-full py-4 font-Arimo">{desc}</p>

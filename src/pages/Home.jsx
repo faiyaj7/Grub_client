@@ -21,12 +21,12 @@ const Home = () => {
       <AboutUs />
       <SpecialOffer />
       <SpecialPromo />
-      {/* <SuccessStories /> */}
       <MobileDownload />
       <Professionals />
       <CustomerFeedback />
       <Article />
       <Sponsors />
+      {/* <SuccessStories /> */}
     </>
   );
 };

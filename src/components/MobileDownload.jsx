@@ -4,7 +4,7 @@ import downloadappstore from "../assets/app-store-badge.webp";
 import mobiledownload from "../assets/mobiledownload.webp";
 const MobileDownload = () => {
   return (
-    <section className="bg-yellow-50 flex items-center justify-around w-full h-[65vh] mx-auto relative pt-20 ">
+    <section className="hidden bg-yellow-50 lg:flex items-center justify-around  w-full h-[65vh] mx-auto relative pt-20 ">
       {/* Left part (Image) */}
       <div className="absolute top-5 right-[50%] w-1/3">
         <img
