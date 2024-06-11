@@ -5,10 +5,12 @@ import { IoMdSearch } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { MdLogin } from "react-icons/md";
 import Drawer from "./Drawer";
-import { AnimatePresence} from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import Logo from "./Logo";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Handling the menu open and close
   const handleToggleMenu = () => {
     if (menuOpen) {
       setMenuOpen(false);
@@ -23,11 +25,13 @@ const Header = () => {
   return (
     <>
       {" "}
-      <div className="absolute w-full flex items-center justify-around mt-5">
+      <div className="absolute w-full flex items-center justify-around mt-5 lg:mt-0">
         {/* Logo */}
-        <div className="">logo</div>
+        <div className="w-[25%] lg:w-[15%]">
+          <Logo />
+        </div>
         {/* Lists */}
-        <div className="hidden lg:flex gap-8">
+        <div className="hidden lg:flex lg:items-center gap-8">
           {Menu.map(({ id, name }) => (
             <Link
               href={`/${name}`}

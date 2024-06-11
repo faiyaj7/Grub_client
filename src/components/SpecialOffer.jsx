@@ -4,7 +4,7 @@ const SpecialOffer = () => {
   return (
     <section className="flex items-center justify-around flex-col lg:flex-row relative bg-yellow-50 h-fit lg:h-[80vh] py-20">
       {/* Left Side */}
-      <div className="h-full w-full lg:w-[60%] bg-white p-20">
+      <div className="h-full w-full lg:w-[60%] bg-white/65 shadow-lg rounded-lg p-20">
         <h4 className="font-merriweatherSans font-bold text-orange-400 ">
           Special Offer
         </h4>
@@ -28,7 +28,7 @@ const SpecialOffer = () => {
         </div>
       </div>
       {/* Right Side (Image) */}
-      <div className="lg:absolute right-[15%] -top-15 w-full lg:w-[35%] order-first">
+      <div className="lg:absolute right-[15%] -top-15 w-4/5 lg:w-[35%] order-first">
         <img src={chicken_roast} alt="chicken_roast" />
       </div>
     </section>

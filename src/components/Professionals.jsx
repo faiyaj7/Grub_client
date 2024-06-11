@@ -24,7 +24,7 @@ const Professionals = () => {
       {/* Bottom part */}
       <div className="grid grid-cols-1  lg:grid-cols-3 gap-5 pt-5 w-4/5 mx-auto">
         {professionalPeople.map(({ name, image, experience },index) => (
-          <div className="h-full w-full bg-white" key={index}>
+          <div className="h-full w-full bg-white/65 shadow-lg rounded-lg flex items-center gap-6 flex-col" key={index}>
             <img
               src={image}
               alt="name"
@@ -35,10 +35,10 @@ const Professionals = () => {
               {experience} Years Experience
             </h4>
             <div className="flex items-center justify-center gap-4 mt-2">
-              <FaFacebookF className="bg-yellow-100/85 w-6 h-6 p-1 rounded-full cursor-pointer" />
-              <FaXTwitter className="bg-yellow-100/85 w-6 h-6 p-1 rounded-full cursor-pointer" />
-              <FaInstagram className="bg-yellow-100/85 w-6 h-6 p-1 rounded-full cursor-pointer" />
-              <FaLinkedin className="bg-yellow-100/85 w-6 h-6 p-1 rounded-full cursor-pointer" />
+              <FaFacebookF className="bg-slate-100/85 w-6 h-6 p-1 rounded-full cursor-pointer" />
+              <FaXTwitter className="bg-slate-100/85 w-6 h-6 p-1 rounded-full cursor-pointer" />
+              <FaInstagram className="bg-slate-100/85 w-6 h-6 p-1 rounded-full cursor-pointer" />
+              <FaLinkedin className="bg-slate-100/85 w-6 h-6 p-1 rounded-full cursor-pointer" />
             </div>
           </div>
         ))}

@@ -14,7 +14,7 @@ const Article = () => {
       {/* Articles Mapping */}
       <div className="grid grid-cols-1 lg:grid-cols-3 mx-auto gap-4 w-full lg:w-[75%]">
         {recentArticles.map(({ date, desc, image }, index) => (
-          <div className="bg-white rounded-md w-full h-fit" key={index}>
+          <div className="bg-white/65 shadow-lg rounded-md w-full h-fit" key={index}>
             <h4 className="font-merriweatherSans text-xs text-orange-600 font-bold px-6 pt-4">
               {date}
             </h4>
@@ -33,7 +33,7 @@ const Article = () => {
         ))}
       </div>
       {/* Button */}
-      <div className="flex items-center justify-center mt-2">
+      <div className="flex items-center justify-center py-10 lg:mt-2">
         <button className="py-4 px-5 bg-green-500 hover:bg-green-600 transition-all duration-300 text-white font-Arimo rounded-md ">
           See all blog
         </button>

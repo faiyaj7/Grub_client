@@ -14,7 +14,7 @@ const MobileDownload = () => {
         />
       </div>
       {/* Right Part  */}
-      <div className="bg-white w-1/2 h-full p-8 shadow-md">
+      <div className="bg-white/65 w-1/2 h-full p-8 shadow-lg rounded-lg">
         <h1 className="font-merriweatherSans text-orange-500 text-end">
           Download App
         </h1>

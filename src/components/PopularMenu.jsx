@@ -17,7 +17,7 @@ const PopularMenu = () => {
           <SwiperSlide key={index}>
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-1 px-4 lg:px-24 ">
               {item.map((singleItem, index) => (
-                <div key={index} className="bg-white rounded-md p-4  h-full">
+                <div key={index} className="bg-white/65 rounded-md p-4  h-full shadow-2xl">
                   <h1 className="font-merriweatherSans uppercase text-lg">
                     {singleItem.name}
                   </h1>
