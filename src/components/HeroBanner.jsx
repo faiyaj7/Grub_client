@@ -4,9 +4,9 @@ import heropic from "../assets/heropic.webp";
 const HeroBanner = () => {
   return (
     <>
-      <section className="bg-yellow-50 lg:bg-none h-fit lg:h-screen flex items-center justify-around px-0 lg:px-16 pt-20 flex-col md:flex-row ">
+      <section className="bg-yellow-50 lg:bg-transparent h-fit lg:h-screen flex items-center justify-around px-0 lg:px-16 pt-20 flex-col md:flex-row ">
         {/* Left Part */}
-        <div className=" flex flex-col gap-5 px-8 lg:px-0">
+        <div className="flex flex-col gap-5 px-8 lg:px-0">
           <h6 className="font-anton text-sm text-orange-400">
             Medium 2-topping Burger
           </h6>
@@ -88,6 +88,8 @@ const HeroBanner = () => {
       </section>
       {/* Overlay over half of the width */}
       <div className="w-1/2 bg-yellow-50 h-screen absolute top-0 right-0 -z-10" />
+       {/* Overlay over half of the width */}
+       <div className="w-1/2 bg-white h-screen absolute top-0 left-0 -z-10" />
     </>
   );
 };
