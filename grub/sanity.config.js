@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'Grub',
 
-  projectId: 'qzf81uik',
+  projectId: 'fbl8cajs',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],

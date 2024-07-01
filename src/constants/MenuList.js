@@ -33,12 +33,12 @@ import staff2 from "../assets/staff2.jpg";
 import staff3 from "../assets/staff3.jpg";
 
 export const Menu = [
-  { id: 1, name: "Home" },
-  { id: 2, name: "About" },
-  { id: 3, name: "Page" },
-  { id: 4, name: "Shop" },
-  { id: 5, name: "Blog" },
-  { id: 6, name: "Contact" },
+  { id: 1, name: "Home", link: "/" },
+  { id: 2, name: "About", link: "/about" },
+  { id: 3, name: "Page", link: "/" },
+  { id: 4, name: "Shop", link: "/restaurants" },
+  { id: 5, name: "Blog", link: "/blog" },
+  { id: 6, name: "Contact", link: "/contact" },
 ];
 
 export const aboutUs = [

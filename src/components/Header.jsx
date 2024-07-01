@@ -25,16 +25,16 @@ const Header = () => {
   return (
     <>
       {" "}
-      <div className="absolute w-full flex items-center justify-around mt-5 lg:mt-0">
+      <div className="w-full flex items-center justify-around mt-5 lg:mt-0">
         {/* Logo */}
         <div className="w-[25%] lg:w-[15%]">
           <Logo />
         </div>
         {/* Lists */}
         <div className="hidden lg:flex lg:items-center gap-8">
-          {Menu.map(({ id, name }) => (
+          {Menu.map(({ id, name, link }) => (
             <Link
-              href={`/${name}`}
+              to={link}
               key={id}
               className="font-fraunces text-sm hover:border-b hover:border-b-black transition-all duration-300"
             >

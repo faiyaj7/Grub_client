@@ -1,0 +1,163 @@
+export const restaurants = {
+  name: 'restaurant',
+  type: 'document',
+  title: 'Restaurant',
+  fields: [
+    {
+      name: 'restaurant_name',
+      type: 'string',
+      title: 'Restaurant_name',
+      validation: (Rule) => Rule.required().min(5),
+    },
+    {
+      title: 'Slug',
+      name: 'slug',
+      type: 'slug',
+      options: {
+        source: 'restaurant_name',
+        maxLength: 200, // will be ignored if slugify is set
+        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
+      },
+    },
+    {
+      name: 'deliveryOptions',
+      type: 'string',
+      title: 'Delivery Options',
+      options: {
+        // <-- predefined values
+        list: [
+          {title: 'relevance', value: 'relevance'},
+          {title: 'fastest', value: 'fastest'},
+          {title: 'distance', value: 'distance'},
+        ],
+        layout: 'radio',
+        validation: (Rule) => Rule.required(),
+      },
+    },
+    {name: 'image', title: 'Resturant Image', type: 'image'},
+    {
+      name: 'free_offer',
+      type: 'object',
+      title: 'Free Offer',
+      fields: [
+        {
+          name: 'exists',
+          type: 'boolean',
+          title: 'Free Offer Exists',
+          validation: (rule) => rule.required(),
+        },
+      ],
+    },
+    {
+      name: 'deal_offer',
+      type: 'object',
+      title: 'Deal Offer',
+      fields: [
+        {
+          name: 'exists',
+          type: 'boolean',
+          title: 'Deal Offer Exists',
+        },
+        {
+          name: 'price',
+          type: 'number',
+          title: 'Price of Deal Offer ',
+          validation: (Rule) => Rule.required().precision(2).min(5).max(20).positive(),
+        },
+      ],
+    },
+    {
+      name: 'voucher_offer',
+      type: 'object',
+      title: 'Voucher Offer',
+      fields: [
+        {
+          name: 'exists',
+          type: 'boolean',
+          title: 'Voucher Offer Exists',
+        },
+        {
+          name: 'price',
+          type: 'number',
+          title: 'Price of Voucher Offer ',
+          validation: (Rule) => Rule.required().precision(2).min(2).max(20).positive(),
+        },
+      ],
+    },
+    {
+      name: 'cuisines',
+      title: 'Cuisines',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        list: [
+          {title: 'Asian', value: 'Asian'},
+
+          {title: 'Bangladeshi', value: 'Bangladeshi'},
+          {title: 'Beverage', value: 'Beverage'},
+          {title: 'Biryani', value: 'Biryani'},
+          {title: 'Burgers', value: 'Burgers'},
+          {title: 'Cakes', value: 'Cakes'},
+          {title: 'Chicken', value: 'Chicken'},
+          {title: 'Chinese', value: 'Chinese'},
+          {title: 'Dessert', value: 'Dessert'},
+          {title: 'Fast Food', value: 'Fast Food'},
+          {title: 'Fish', value: 'Fish'},
+          {title: 'Fried Chicken', value: 'Fried Chicken'},
+          {title: 'Ice Cream', value: 'Ice Cream'},
+          {title: 'Indian', value: 'Indian'},
+          {title: 'Italian', value: 'Italian'},
+          {title: 'Japanese', value: 'Japanese'},
+          {title: 'Kebab', value: 'Kebab'},
+          {title: 'Khichuri', value: 'Khichuri'},
+          {title: 'Meat', value: 'Meat'},
+          {title: 'Mediterranean', value: 'Mediterranean'},
+          {title: 'Mexican', value: 'Mexican'},
+          {title: 'Noodles', value: 'Noodles'},
+          {title: 'Pasta', value: 'Pasta'},
+          {title: 'Pizza', value: 'Pizza'},
+          {title: 'Rice Dishes', value: 'Rice Dishes'},
+          {title: 'Seafood', value: 'Seafood'},
+          {title: 'Shawarma', value: 'Shawarma'},
+          {title: 'Snacks', value: 'Snacks'},
+          {title: 'Soups', value: 'Soups'},
+          {title: 'Sushi', value: 'Sushi'},
+          {title: 'Thai', value: 'Thai'},
+          {title: 'Turkish', value: 'Turkish'},
+          {title: 'Western', value: 'Western'},
+          {title: 'Wraps', value: 'Wraps'},
+        ],
+      },
+    },
+    {
+      title: 'Menu',
+      name: 'menu',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'Food'}]}],
+    },
+    {
+      title: 'Reviews',
+      name: 'reviews',
+      type: 'number',
+      validation: (Rule) => Rule.required().min(1),
+    },
+    {
+      title: 'Rating of the Restaurant',
+      name: 'rating',
+      type: 'number',
+      validation: (Rule) => Rule.required().min(1).max(5).precision(1),
+    },
+    {
+      title: 'Minimum Delivery Time',
+      name: 'min_delivery_time',
+      type: 'number',
+      validation: (Rule) => Rule.required().min(1).integer(),
+    },
+    {
+      title: 'Maximum Delivery Time',
+      name: 'max_delivery_time',
+      type: 'number',
+      validation: (Rule) => Rule.required().min(1).integer(),
+    },
+  ],
+}

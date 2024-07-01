@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 const HomeHOCLayout = () => (WrappedComponent) => {
   return (props) => (
-    <div className="relative ">
+    <div className=" ">
       <Header />
       <WrappedComponent />
       <Footer />
