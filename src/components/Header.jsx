@@ -7,9 +7,10 @@ import { MdLogin } from "react-icons/md";
 import Drawer from "./Drawer";
 import { AnimatePresence } from "framer-motion";
 import Logo from "./Logo";
+import { useSelector } from "react-redux";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const qty = useSelector((state) => state.productSlice.totalQuantities);
   // Handling the menu open and close
   const handleToggleMenu = () => {
     if (menuOpen) {
@@ -57,12 +58,15 @@ const Header = () => {
 
         <div className="flex items-center justify-center gap-8 ">
           {/* Cart */}
-          <div className="relative flex items-center justify-center cursor-pointer">
+          <Link
+            to="/cart"
+            className="relative flex items-center justify-center cursor-pointer"
+          >
             <IoCartOutline className="w-8 h-8 rounded-full bg-slate-200 p-2 hover:bg-slate-300 transition-all duration-300" />
             <span className="text-xs absolute -right-4 -top-2 h-6 w-6 rounded-full bg-red-400  text-center p-[0.2rem] font-fraunces text-white">
-              10
+              {qty}
             </span>
-          </div>
+          </Link>
           {/* Login */}
           <div className="cursor-pointer">
             <MdLogin className="w-8 h-8 rounded-full bg-slate-200 p-2 hover:bg-slate-300 transition-all duration-300" />

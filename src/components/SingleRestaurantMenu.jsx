@@ -15,21 +15,22 @@ import {
 } from "react-icons/fa";
 import { PiNotepadThin } from "react-icons/pi";
 import Modal from "./Modal";
+import { AnimatePresence, motion } from "framer-motion";
 const fetchSingleRestaurantInformation = async (id) => {
   const query = `*[_type == 'restaurant' && "${id}" == slug.current][0]{...,"imageUrl":image.asset->url}`;
-  console.log(query);
+  // console.log(query);
   const result = await client.fetch(query);
   return result;
 };
 const fetchSingleRestaurantMenu = async (id) => {
   const query = `*[_type == "restaurant" && "${id}" == slug.current][0]{menu[]->{...,"imageUrl":image.asset ->url}}`;
-  console.log(query);
+  // console.log(query);
   const result = await client.fetch(query);
   return result.menu;
 };
 const fetchSingleRestaurantCuisines = async (id) => {
   const query = `*[_type == "restaurant" && "${id}" == slug.current][0]{cuisines}`;
-  console.log(query);
+  // console.log(query);
   const result = await client.fetch(query);
   return result.menu;
 };
@@ -39,40 +40,37 @@ const SingleRestaurantMenu = () => {
   const [singleRestaurantCuisines, setSingleRestaurantCuisines] = useState([]);
   const [showModal, setShowModal] = React.useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
+
   const [loading, setLoading] = useState(true);
+
   let { id } = useParams();
+
   if (showModal) {
-    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
   } else {
-    document.body.style.overflow = "scroll";
+    document.documentElement.style.overflowY = "scroll";
   }
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        // Fetch restaurant information
-        const singleRestaurantData = await fetchSingleRestaurantInformation(id);
-        setSingleRestaurant(singleRestaurantData);
+      // Fetch restaurant information
+      const singleRestaurantData = await fetchSingleRestaurantInformation(id);
+      setSingleRestaurant(singleRestaurantData);
 
-        // Fetch menu
-        const singleRestaurantMenuData = await fetchSingleRestaurantMenu(id);
-        setSingleRestaurantMenu(singleRestaurantMenuData);
+      // Fetch menu
+      const singleRestaurantMenuData = await fetchSingleRestaurantMenu(id);
+      setSingleRestaurantMenu(singleRestaurantMenuData);
 
-        // Set loading state to false once both pieces of data are fetched
+      // Set loading state to false once both pieces of data are fetched
 
-        // Fetch Cuisines
-        const singleRestaurantCuisines = await fetchSingleRestaurantCuisines(
-          id
-        );
-        setSingleRestaurantCuisines(singleRestaurantMenuData);
-        setLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      }
+      // Fetch Cuisines
+      const singleRestaurantCuisines = await fetchSingleRestaurantCuisines(id);
+      setSingleRestaurantCuisines(singleRestaurantMenuData);
+      setLoading(false);
     };
 
     fetchData();
   }, []);
-  console.log(singleRestaurant);
+  // console.log(singleRestaurant);
   if (loading) return <div>..Loading</div>;
   return (
     <div className="px-10">
@@ -178,7 +176,7 @@ const SingleRestaurantMenu = () => {
           <div className="border border-black/25 rounded-xl px-6 py-4  hover:bg-pink-500/25 transition-all duration-300 cursor-pointer  shadow-md">
             <div className="flex items-center">
               <PiNotepadThin className="text-pink-500" />
-              <h1 className="font-merriweatherSans">$5 off(GRUB10)</h1>
+              <h1 className="font-merriweatherSans">$5 off(GRUB5)</h1>
             </div>
             <p className="font-fraunces">
               Min. order $10. Valid for all items.
@@ -190,11 +188,12 @@ const SingleRestaurantMenu = () => {
             <div className="flex items-center">
               <PiNotepadThin className="text-pink-500" />
               <h1 className="font-merriweatherSans">
-                ${singleRestaurant.voucher_offer.price} off(GRUB10)
+                ${singleRestaurant.voucher_offer.price} off(GRUB
+                {Math.floor(singleRestaurant.voucher_offer.price)})
               </h1>
             </div>
             <p className="font-fraunces">
-              Min. order $10. Valid for all items.
+              Min. order ${Math.floor(singleRestaurant.voucher_offer.price)}. Valid for all items.
             </p>
             <p className="font-fraunces">Use in Cart.</p>
           </div>{" "}
@@ -203,11 +202,11 @@ const SingleRestaurantMenu = () => {
             <div className="flex items-center">
               <PiNotepadThin className="text-pink-500" />
               <h1 className="font-merriweatherSans">
-                ${singleRestaurant.deal_offer.price} off(GRUB10)
+                ${singleRestaurant.deal_offer.price} off(GRUB{Math.floor(singleRestaurant.deal_offer.price)})
               </h1>
             </div>
             <p className="font-fraunces">
-              Min. order $10. Valid for all items.
+              Min. order ${Math.floor(singleRestaurant.deal_offer.price)}. Valid for all items.
             </p>
             <p className="font-fraunces">Use in Cart.</p>
           </div>
@@ -222,7 +221,11 @@ const SingleRestaurantMenu = () => {
       <h1 className="font-merriweatherSans text-xl pt-4">🔥 Popular Menu</h1>
       <div className="grid grid-cols-3 px-4 gap-10 mr-auto w-fit pt-4 pb-10">
         {singleRestaurantMenu?.map((item) => (
-          <div
+          <motion.div
+            whileHover={{
+              backgroundColor: "rgba(236 72 153 1)",
+              color: "white",
+            }}
             key={item._id}
             className="flex items-center justify-between border border-black/25 px-4 cursor-pointer rounded-xl shadow-md"
             onClick={() => {
@@ -243,15 +246,17 @@ const SingleRestaurantMenu = () => {
                 <FaPlusCircle className="" />
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
-        {showModal && (
-          <Modal
-            showModal={showModal}
-            setShowModal={setShowModal}
-            singleRestaurantMenu={selectedMenuItem}
-          />
-        )}
+        <AnimatePresence>
+          {showModal && (
+            <Modal
+              showModal={showModal}
+              setShowModal={setShowModal}
+              singleRestaurantMenu={selectedMenuItem}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

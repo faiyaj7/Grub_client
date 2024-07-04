@@ -1,11 +1,34 @@
-import { restaurantApi } from "./api/RestaurantApi"; // Adjust the import path as necessary
 import { configureStore } from "@reduxjs/toolkit";
-const store = configureStore({
-  reducer: {
-    // Add your reducers here
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(restaurantApi.middleware),
-});
+import productSlice from "./productSlice";
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import { combineReducers } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import cartSlice from "./cartSlice";
 
-export default store;
+const persistConfig = {
+  key: "grub_root",
+  storage,
+};
+const rootReducer = combineReducers({
+  productSlice: productSlice,
+  cartSlice: cartSlice,
+});
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});

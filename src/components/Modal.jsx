@@ -1,16 +1,44 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { RxCross1 } from "react-icons/rx";
 import urlFor from "../lib/imageBuilder";
 import { FaMinus, FaPlus, FaCartShopping } from "react-icons/fa6";
+import { motion } from "framer-motion";
+import { addToCart, decQty, incQty } from "../store/productSlice";
 export default function Modal({
   showModal,
   setShowModal,
   singleRestaurantMenu,
 }) {
+  const qty = useSelector((state) => state.productSlice.qty);
+  const dispatch = useDispatch();
+  const modalRef = useRef(null);
+  console.log(modalRef);
+  // When clicked outside modal it should exit the modal
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setShowModal(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+  }, [setShowModal]);
   return (
     <>
-      <div className="fixed top-10 left-96 right-96 z-50 overflow-y-scroll">
-        <div className="relative h-[80vh] ">
+      <motion.div
+        ref={modalRef}
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+        }}
+        exit={{ opacity: 0 }}
+        className="fixed top-10 left-96 right-96 z-50  h-[80vh] overflow-y-scroll"
+      >
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="relative"
+        >
           {/*content*/}
           <div className="border-0 rounded-l-lg shadow-lg relative flex flex-col w-full bg-white  outline-none focus:outline-none">
             {/*image*/}
@@ -28,16 +56,34 @@ export default function Modal({
               </button>
             </div>
             {/* Menu Desc */}
-            <div className="flex items-start px-10 flex-col w-full">
-              <h3 className="text-3xl font-semibold font-merriweatherSans">
+            <div className="flex items-start px-10 flex-col w-full overflow-x-hidden">
+              <motion.h3
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ duration: 0.7 }}
+                className="text-3xl font-semibold font-merriweatherSans"
+              >
                 {singleRestaurantMenu.name}
-              </h3>
-              <p className="my-4 text-lg leading-relaxed font-fraunces">
+              </motion.h3>
+              <motion.p
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                className="my-4 text-lg leading-relaxed font-fraunces"
+              >
                 {singleRestaurantMenu.desc}
-              </p>
-              <h1 className="font-fraunces text-red-500">
+              </motion.p>
+              <motion.h1
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="font-fraunces text-red-500"
+              >
                 ${singleRestaurantMenu.price}
-              </h1>
+              </motion.h1>
               <h1 className="font-fraunces text-xl tracking-wide font-medium">
                 Special Instructions
               </h1>
@@ -58,28 +104,43 @@ export default function Modal({
                 <button
                   className="text-slate-500 rounded-full bg-slate-200"
                   type="button"
+                  onClick={() => dispatch(decQty())}
                 >
                   <FaMinus size={20} />
                 </button>
-                <span>1</span>
+                <span>{qty}</span>
                 <button
                   className="text-pink-500 rounded-full border border-slate-400"
                   type="button"
-                  onClick={() => setShowModal(false)}
+                  onClick={() => dispatch(incQty())}
                 >
                   <FaPlus />
                 </button>
               </div>
-              <button className="bg-pink-500 text-white px-4 py-2 rounded-lg flex items-center gap-3 mr-3">
+              <button
+                className={`${
+                  qty > 0 ? "cursor-pointer" : "cursor-not-allowed"
+                } bg-pink-500 text-white px-4 py-2 rounded-lg flex items-center gap-3 mr-3 `}
+                onClick={() => {
+                  if (qty > 0) {
+                    dispatch(addToCart({ product: singleRestaurantMenu, qty }));
+                  }
+                }}
+              >
                 <FaCartShopping />{" "}
                 <span className="font-fraunces">Add to cart</span>
               </button>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       {/* Overlay */}
-      <div className="fixed inset-0 z-40 bg-black/65"></div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-40 bg-black/65"
+      ></motion.div>
     </>
   );
 }
