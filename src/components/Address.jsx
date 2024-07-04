@@ -5,7 +5,7 @@ import { FaPlus } from "react-icons/fa6";
 import { TiTick } from "react-icons/ti";
 import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from "../store/cartSlice";
-const Address = ({ cart }) => {
+const Address = ({ cart, isPayment }) => {
   const dispatch = useDispatch();
   const addresses = useSelector((state) => state.cartSlice.addresses);
   const [addAddressForm, setAddAddressForm] = useState(false);
@@ -37,7 +37,7 @@ const Address = ({ cart }) => {
 
   return (
     <div className="flex items-center justify-center flex-col">
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex items-center justify-center lg:justify-between gap-2 px-5">
         {/* Display Addresses */}
         {addresses.length > 0 ? (
           <div className="grid grid-cols-2 gap-4">
@@ -70,19 +70,23 @@ const Address = ({ cart }) => {
             ))}
           </div>
         ) : (
-          <h1 className="font-merriweatherSans">No Address Added</h1>
+          <h1 className="font-merriweatherSans bg-slate-400/25 px-5 py-6 rounded-md text-black/45">
+            No Address Added
+          </h1>
         )}
 
         {/* Add Address Button */}
-        <div
-          className="bg-blue-600 rounded-lg w-20 h-20 flex items-center justify-center flex-col gap-2 cursor-pointer hover:bg-blue-800 transition-all duration-300"
-          onClick={() => setAddAddressForm(true)}
-        >
-          <FaPlus className="text-blue-600 rounded-full bg-white" size={20} />
-          <h1 className="font-merriweatherSans text-white text-xs">
-            Add Address
-          </h1>
-        </div>
+        {!isPayment && (
+          <div
+            className="bg-blue-600 rounded-lg w-20 h-20 flex items-center justify-center flex-col gap-2 cursor-pointer hover:bg-blue-800 transition-all duration-300"
+            onClick={() => setAddAddressForm(true)}
+          >
+            <FaPlus className="text-blue-600 rounded-full bg-white" size={20} />
+            <h1 className="font-merriweatherSans text-white text-xs text-center">
+              Add Address
+            </h1>
+          </div>
+        )}
       </div>
       {/* Address Form */}
       {addAddressForm && (

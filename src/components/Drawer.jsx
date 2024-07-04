@@ -55,7 +55,6 @@ const Drawer = ({ open, handleToggleMenu }) => {
     visible: { x: 0, opacity: 1, transition: { duration: 0.3 } },
   };
 
-  console.log("here is drawer");
   return (
     <div
       className="visible lg:hidden fixed top-0 right-0 left-0  z-20 min-h-screen
@@ -96,7 +95,7 @@ const Drawer = ({ open, handleToggleMenu }) => {
         <NavLink
           title="Menu"
           singleItem={singleItem}
-          link="/shop"
+          link="/restaurants"
           handleToggleMenu={handleToggleMenu}
           icon={<CgMenuCheese size={30} />}
           className={"text-2xl"}
@@ -112,7 +111,7 @@ const Drawer = ({ open, handleToggleMenu }) => {
         <NavLink
           title="Faq"
           singleItem={singleItem}
-          link="/"
+          link="/faq"
           handleToggleMenu={handleToggleMenu}
           icon={<FaQuestion size={30} />}
           className={"text-2xl"}
@@ -120,7 +119,7 @@ const Drawer = ({ open, handleToggleMenu }) => {
         <NavLink
           title="Blog"
           singleItem={singleItem}
-          link="/"
+          link="/blog"
           handleToggleMenu={handleToggleMenu}
           icon={<FaMicroblog size={30} />}
           className={"text-2xl"}

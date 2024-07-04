@@ -32,7 +32,7 @@ export default function Modal({
           opacity: 1,
         }}
         exit={{ opacity: 0 }}
-        className="fixed top-10 left-96 right-96 z-50  h-[80vh] overflow-y-scroll"
+        className="fixed top-0 lg:top-10 left-0 lg:left-96 right-0 lg:right-96 z-50  h-[80vh] overflow-y-scroll"
       >
         <motion.div
           initial={{ scale: 0 }}

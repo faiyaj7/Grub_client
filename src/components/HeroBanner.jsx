@@ -1,6 +1,7 @@
 import React from "react";
 import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
 import heropic from "../assets/heropic.webp";
+import { Link } from "react-router-dom";
 const HeroBanner = () => {
   return (
     <>
@@ -20,9 +21,12 @@ const HeroBanner = () => {
             <button className="py-3 px-4 bg-orange-500/85 text-white rounded-md text-sm">
               Learn More
             </button>
-            <button className="py-3 px-4 bg-green-500/85 text-white rounded-md text-sm">
+            <Link
+              to="/restaurants"
+              className="py-3 px-4 bg-green-500/85 text-white rounded-md text-sm"
+            >
               Check the Menu
-            </button>
+            </Link>
           </div>
           {/* Icons */}
           <div className="flex items-center justify-start gap-8">
@@ -88,8 +92,8 @@ const HeroBanner = () => {
       </section>
       {/* Overlay over half of the width */}
       <div className="w-1/2 bg-yellow-50 h-screen absolute top-0 right-0 -z-10" />
-       {/* Overlay over half of the width */}
-       <div className="w-1/2 bg-white h-screen absolute top-0 left-0 -z-10" />
+      {/* Overlay over half of the width */}
+      <div className="w-1/2 bg-white h-screen absolute top-0 left-0 -z-10" />
     </>
   );
 };

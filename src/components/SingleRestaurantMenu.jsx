@@ -70,16 +70,16 @@ const SingleRestaurantMenu = () => {
 
     fetchData();
   }, []);
-  // console.log(singleRestaurant);
+
   if (loading) return <div>..Loading</div>;
   return (
     <div className="px-10">
       <Breadcrumb userId={id} />
       {/* Top Part (Restaurant intro) */}
-      <div className="flex items-center justify-start gap-10 pt-10">
+      <div className="flex items-center justify-start flex-col lg:flex-row gap-10 pt-10">
         <img
           src={urlFor(singleRestaurant?.imageUrl).url()}
-          className="w-[15%]"
+          className="w-full lg:w-[15%]"
         />
 
         <div className="flex items-start flex-col gap-2 pb-2">
@@ -154,13 +154,13 @@ const SingleRestaurantMenu = () => {
               </div>
             </div>
             {/* Reviews */}
-            <button className="text-pink-500 font-merriweatherSans ">
+            <button className="text-pink-500 font-merriweatherSans text-nowrap">
               See Reviews
             </button>
             {/* More Info */}
             <button className="flex items-center gap-1 ml-4 ">
               <FaExclamationCircle className="text-pink-500" />{" "}
-              <span className="text-pink-400 font-merriweatherSans ">
+              <span className="text-pink-400 font-merriweatherSans text-nowrap ">
                 More Info
               </span>
             </button>
@@ -171,7 +171,7 @@ const SingleRestaurantMenu = () => {
       {/* Available Offers */}
       <div className="flex items-start flex-col gap-1">
         <h1 className="font-merriweatherSans text-xl pt-4">Available Offers</h1>
-        <div className="grid grid-cols-3 gap-10 mr-auto w-fit py-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mr-auto w-fit py-4">
           {/* Offer */}
           <div className="border border-black/25 rounded-xl px-6 py-4  hover:bg-pink-500/25 transition-all duration-300 cursor-pointer  shadow-md">
             <div className="flex items-center">
@@ -193,7 +193,8 @@ const SingleRestaurantMenu = () => {
               </h1>
             </div>
             <p className="font-fraunces">
-              Min. order ${Math.floor(singleRestaurant.voucher_offer.price)}. Valid for all items.
+              Min. order ${Math.floor(singleRestaurant.voucher_offer.price)}.
+              Valid for all items.
             </p>
             <p className="font-fraunces">Use in Cart.</p>
           </div>{" "}
@@ -202,11 +203,13 @@ const SingleRestaurantMenu = () => {
             <div className="flex items-center">
               <PiNotepadThin className="text-pink-500" />
               <h1 className="font-merriweatherSans">
-                ${singleRestaurant.deal_offer.price} off(GRUB{Math.floor(singleRestaurant.deal_offer.price)})
+                ${singleRestaurant.deal_offer.price} off(GRUB
+                {Math.floor(singleRestaurant.deal_offer.price)})
               </h1>
             </div>
             <p className="font-fraunces">
-              Min. order ${Math.floor(singleRestaurant.deal_offer.price)}. Valid for all items.
+              Min. order ${Math.floor(singleRestaurant.deal_offer.price)}. Valid
+              for all items.
             </p>
             <p className="font-fraunces">Use in Cart.</p>
           </div>
@@ -219,7 +222,7 @@ const SingleRestaurantMenu = () => {
       </div>
       {/* Menu */}
       <h1 className="font-merriweatherSans text-xl pt-4">🔥 Popular Menu</h1>
-      <div className="grid grid-cols-3 px-4 gap-10 mr-auto w-fit pt-4 pb-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 px-4 gap-10 mr-auto w-fit pt-4 pb-10">
         {singleRestaurantMenu?.map((item) => (
           <motion.div
             whileHover={{
@@ -240,11 +243,8 @@ const SingleRestaurantMenu = () => {
               <p className="font-fraunces">{item.desc}</p>
             </div>
             {/* Food Image */}
-            <div className="relative w-[40%]">
+            <div className="w-[40%]">
               <img src={urlFor(item?.imageUrl).url()} alt={item.name} />
-              <button className="absolute bottom-0 left-0" type="button">
-                <FaPlusCircle className="" />
-              </button>
             </div>
           </motion.div>
         ))}

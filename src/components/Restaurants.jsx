@@ -8,6 +8,7 @@ import { GoDot } from "react-icons/go";
 import { FaDivide } from "react-icons/fa6";
 import topRestaurant from "../assets/top_restaurant.svg";
 const Products = ({ restaurants, setRestaurants }) => {
+  
   return (
     <main className="w-full px-4">
       {/* Total Restaurants Found */}
@@ -17,13 +18,13 @@ const Products = ({ restaurants, setRestaurants }) => {
           : restaurants.length}
         Restaurants found.
       </h1>
-      <div className="grid grid-cols-3 gap-5 w-full">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 w-full">
         {/* Mapping */}
         {restaurants.map((item) => (
           <Link
             to={`/restaurants/menu/${item.slug.current}`}
             key={item._id}
-            className="h-[300px]"
+            className="h-[400px] lg:h-[300px] mb-8"
           >
             {/* Hero Image of the Restaurant */}
             <div className="relative h-[55%]">
@@ -64,7 +65,7 @@ const Products = ({ restaurants, setRestaurants }) => {
             {/* Text Container */}
             <div className="shadow-2xl rounded-lg p-4 h-[45%]">
               {/* Restaurant name ,rating and reviews */}
-              <div className="flex items-center justify-between">
+              <div className="flex items-start lg:items-center justify-between flex-col lg:flex-row ">
                 {/* Top Rated Badge and Restaurant Name */}
                 <div className="flex items-center justify-center gap-2">
                   {/* Top Rated Badge */}

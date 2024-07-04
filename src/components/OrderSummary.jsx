@@ -28,11 +28,10 @@ const OrderSummary = ({ cart, totalPrice, isPayment = false }) => {
       }
 
       const session = await response.json(); // Parse response JSON
-      console.log("payment confirmed but not dispatched");
       dispatch(toggleCurrentStep({ operator: "inc", value: 2 }));
+
       // Redirect to Stripe Checkout
       const result = await stripe.redirectToCheckout({ sessionId: session.id });
-
       if (result.error) {
         console.error("Error redirecting to checkout:", result.error);
         // Handle error as needed

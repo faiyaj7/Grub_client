@@ -2,7 +2,7 @@ import React from "react";
 
 const Breadcrumb = ({ userId }) => {
   return (
-    <ol className="flex items-center whitespace-nowrap">
+    <ol className="flex items-center whitespace-nowrap mt-10">
       <li className="inline-flex items-center">
         <a
           className="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600"

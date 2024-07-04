@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Menu } from "../constants/MenuList";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { MdLogin } from "react-icons/md";
@@ -10,6 +10,8 @@ import Logo from "./Logo";
 import { useSelector } from "react-redux";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
   const qty = useSelector((state) => state.productSlice.totalQuantities);
   // Handling the menu open and close
   const handleToggleMenu = () => {
@@ -23,9 +25,16 @@ const Header = () => {
       document.querySelector("html").style.overflow = "hidden";
     }
   };
+  const searchGroqSearchQuery = () => {
+    navigate(`/restaurants?search=${searchQuery}`);
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      searchGroqSearchQuery();
+    }
+  };
   return (
     <>
-      {" "}
       <div className="w-full flex items-center justify-around mt-5 lg:mt-0">
         {/* Logo */}
         <div className="w-[25%] lg:w-[15%]">
@@ -49,10 +58,14 @@ const Header = () => {
             type="text"
             placeholder="Search Keywords"
             className="shadow-lg bg-white placeholder:text-black/20 py-2 px-5 rounded-lg flex-1 outline-none  font-merriweatherSans"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           <IoMdSearch
             size={20}
             className="absolute right-2 cursor-pointer text-black/45"
+            onClick={searchGroqSearchQuery}
           />
         </div>
 

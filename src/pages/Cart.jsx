@@ -20,7 +20,7 @@ const Cart = () => {
   return (
     <>
       {/* Progrssive Bar */}
-      <div className="flex items-center justify-center ">
+      <div className="flex items-center justify-center mt-8 lg:mt-0">
         {step.map((item, index) => (
           <motion.div className="step-item" key={item.id}>
             <motion.div
@@ -50,7 +50,7 @@ const Cart = () => {
       </div>
       {/* Back Arrow */}
       <IoMdArrowRoundBack
-        className="rounded-full w-6 h-6 p-1 bg-slate-700 text-white hover:bg-slate-900 transition-all duration-300 ml-5"
+        className="rounded-full w-6 h-6 p-1 bg-slate-700 text-white hover:bg-slate-900 transition-all duration-300 ml-5 my-8 lg:my-0"
         onClick={() => dispatch(toggleCurrentStep({ id: "dec" }))}
       />
       {/* Cart */}
@@ -58,7 +58,7 @@ const Cart = () => {
         className={` ${
           currentStep >= 3 || cart.length === 0
             ? ""
-            : "flex items-start justify-between gap-5"
+            : "flex items-center lg:items-start justify-between gap-5 flex-col lg:flex-row"
         }`}
       >
         {/* Cart Menu */}

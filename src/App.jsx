@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import SingleRestaurantMenu from "./components/SingleRestaurantMenu";
 import Cart from "./pages/Cart";
+import NoRoute404 from "./pages/NoRoute404";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           element={<SingleRestaurantMenu />}
         />
         <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<NoRoute404 />} />
       </Routes>
     </>
   );

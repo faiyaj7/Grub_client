@@ -20,7 +20,8 @@ export const getGROQQuery = (filterData) => {
 
 // Function to construct the GROQ query
 export const getCuisineMatchingRestaurants = (cuisines) => {
-    
   // Add a condition to check if any cuisine in selectCuisine is in the cuisines array of the restaurant
   return ` && ${cuisines.map((item) => `"${item}"`).join(" || ")} in cuisines`;
 };
+
+export const searchGroqSearchQuery = () => {};
