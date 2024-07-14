@@ -7,8 +7,8 @@ import { FaRegClock, FaS } from "react-icons/fa6";
 import { GoDot } from "react-icons/go";
 import { FaDivide } from "react-icons/fa6";
 import topRestaurant from "../assets/top_restaurant.svg";
+
 const Products = ({ restaurants, setRestaurants }) => {
-  
   return (
     <main className="w-full px-4">
       {/* Total Restaurants Found */}
@@ -24,14 +24,14 @@ const Products = ({ restaurants, setRestaurants }) => {
           <Link
             to={`/restaurants/menu/${item.slug.current}`}
             key={item._id}
-            className="h-[400px] lg:h-[300px] mb-8"
+            className="h-[400px] lg:h-[300px] mb-8 rounded-lg"
           >
             {/* Hero Image of the Restaurant */}
             <div className="relative h-[55%]">
               <img
                 src={urlFor(item.image).url()}
                 alt={item.restaurant_name}
-                className="object-cover h-full w-full"
+                className="object-cover h-full w-full rounded-t-lg"
               />
               {/* Voucher Tag */}
               {item.voucher_offer.exists ? (

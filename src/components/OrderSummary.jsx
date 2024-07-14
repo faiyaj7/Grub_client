@@ -5,7 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 const OrderSummary = ({ cart, totalPrice, isPayment = false }) => {
   const [voucher, setVoucher] = useState(0);
   const dispatch = useDispatch();
-
+  
   const makePayment = async () => {
     try {
       const stripe = await loadStripe(import.meta.env.VITE_APP_STRIPE_KEY);
@@ -64,7 +64,7 @@ const OrderSummary = ({ cart, totalPrice, isPayment = false }) => {
               <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
                 Savings
               </dt>
-              <dd className="text-base font-medium text-green-600">-$299.00</dd>
+              <dd className="text-base font-medium text-green-600">-$0.00</dd>
             </dl>
 
             <dl className="flex items-center justify-between gap-4">
@@ -72,7 +72,7 @@ const OrderSummary = ({ cart, totalPrice, isPayment = false }) => {
                 Store Pickup
               </dt>
               <dd className="text-base font-medium text-gray-900 dark:text-white">
-                $99
+                $0.00
               </dd>
             </dl>
 
@@ -81,7 +81,7 @@ const OrderSummary = ({ cart, totalPrice, isPayment = false }) => {
                 Tax
               </dt>
               <dd className="text-base font-medium text-gray-900 dark:text-white">
-                $799
+                $0.00
               </dd>
             </dl>
           </div>
@@ -91,7 +91,7 @@ const OrderSummary = ({ cart, totalPrice, isPayment = false }) => {
               Total
             </dt>
             <dd className="text-base font-bold text-gray-900 dark:text-white">
-              $8,191.00
+              ${totalPrice}
             </dd>
           </dl>
         </div>

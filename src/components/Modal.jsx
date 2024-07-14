@@ -25,6 +25,7 @@ export default function Modal({
   }, [setShowModal]);
   return (
     <>
+      {/* Main Content */}
       <motion.div
         ref={modalRef}
         initial={{ opacity: 0 }}
@@ -40,13 +41,13 @@ export default function Modal({
           className="relative"
         >
           {/*content*/}
-          <div className="border-0 rounded-l-lg shadow-lg relative flex flex-col w-full bg-white  outline-none focus:outline-none">
+          <div className="border-0 rounded-l-lg shadow-lg relative flex flex-col w-full h-full bg-white  outline-none focus:outline-none">
             {/*image*/}
-            <div className="relative px-6 flex-auto">
+            <div className="relative flex-auto h-[50%]">
               <img
                 src={urlFor(singleRestaurantMenu.image).url()}
                 alt={singleRestaurantMenu.name}
-                className="mx-auto"
+                className="h-full mx-auto"
               />
               <button
                 className="absolute top-5 right-8 w-8 h-8 rounded-full bg-pink-500 text-white hover:scale-110 transition-all duration-500"
@@ -56,13 +57,13 @@ export default function Modal({
               </button>
             </div>
             {/* Menu Desc */}
-            <div className="flex items-start px-10 flex-col w-full overflow-x-hidden">
+            <div className="flex items-start px-10 flex-col w-full overflow-x-hidden h-[30%]">
               <motion.h3
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ duration: 0.7 }}
-                className="text-3xl font-semibold font-merriweatherSans"
+                className="text-3xl font-semibold font-merriweatherSans pt-10"
               >
                 {singleRestaurantMenu.name}
               </motion.h3>
@@ -99,7 +100,7 @@ export default function Modal({
               />
             </div>
             {/*footer*/}
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-end h-[10%]">
               <div className="sticky flex items-center justify-end p-6 gap-2">
                 <button
                   className="text-slate-500 rounded-full bg-slate-200"

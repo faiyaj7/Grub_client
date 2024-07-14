@@ -5,6 +5,7 @@ import Shop from "./pages/Shop";
 import SingleRestaurantMenu from "./components/SingleRestaurantMenu";
 import Cart from "./pages/Cart";
 import NoRoute404 from "./pages/NoRoute404";
+import Loader from "./components/Loader";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           element={<SingleRestaurantMenu />}
         />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/load" element={<Loader />} />
         <Route path="*" element={<NoRoute404 />} />
       </Routes>
     </>

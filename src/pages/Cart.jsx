@@ -11,6 +11,7 @@ import Payment from "../components/Payment";
 import Address from "../components/Address";
 import { toggleCurrentStep } from "../store/cartSlice";
 import Success from "../components/Success";
+import { FaDotCircle } from "react-icons/fa";
 const Cart = () => {
   const dispatch = useDispatch();
   const currentStep = useSelector((state) => state.cartSlice.currentStep);
@@ -26,20 +27,25 @@ const Cart = () => {
             <motion.div
               className="step"
               initial={{
-                backgroundColor: index < currentStep ? "#4ade80" : "#1e293b",
+                backgroundColor: index < currentStep ? "#D6A2E8" : "#1e293b",
                 border: index < currentStep ? "0px solid text-pink-500" : 0,
               }}
               animate={{
-                backgroundColor: index < currentStep ? "#4ade80" : "#1e293b",
+                backgroundColor: index < currentStep ? "#D6A2E8" : "#1e293b",
                 border: index < currentStep ? "0px solid text-pink-500" : 0,
               }}
             >
-              <FaCheck />
+              {index >= currentStep ? (
+                <FaDotCircle />
+              ) : (
+                <FaCheck className="" />
+              )}
             </motion.div>
             <h1 className="capitalize">{item.value}</h1>
+            {/* straight line between 2 steps */}
             {index < step.length - 1 && (
               <motion.div
-                className="absolute w-full h-1 left-2/4 top-1/3 -translate-y-2/4 bg-red-400"
+                className="absolute w-full h-1 left-2/4 top-1/3 -translate-y-2/4 bg-[#82589F]"
                 initial={{ width: 0 }}
                 animate={{ width: index < currentStep ? "100%" : "0%" }}
                 transition={{ duration: 0.5 }}
@@ -58,7 +64,7 @@ const Cart = () => {
         className={` ${
           currentStep >= 3 || cart.length === 0
             ? ""
-            : "flex items-center lg:items-start justify-between gap-5 flex-col lg:flex-row"
+            : "flex items-center lg:items-start justify-between gap-5 flex-col lg:flex-row px-10"
         }`}
       >
         {/* Cart Menu */}

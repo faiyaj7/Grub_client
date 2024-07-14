@@ -1,10 +1,17 @@
 import React, { useEffect } from "react";
 import success from "../assets/success.png";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { emptyCart, emptyPrice, emptyQuantities } from "../store/productSlice";
+
 const Success = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
     localStorage.removeItem("persist:grub_root");
-  }, []);
+    dispatch(emptyCart());
+    dispatch(emptyPrice());
+    dispatch(emptyQuantities());
+  }, [dispatch]);
   return (
     <section className="w-full h-[70vh] flex items-center justify-center flex-col">
       <div className="relative flex items-center justify-center w-full h-[80%]">

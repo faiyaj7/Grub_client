@@ -16,6 +16,7 @@ import {
 import { PiNotepadThin } from "react-icons/pi";
 import Modal from "./Modal";
 import { AnimatePresence, motion } from "framer-motion";
+import Loader from "./Loader";
 const fetchSingleRestaurantInformation = async (id) => {
   const query = `*[_type == 'restaurant' && "${id}" == slug.current][0]{...,"imageUrl":image.asset->url}`;
   // console.log(query);
@@ -45,7 +46,7 @@ const SingleRestaurantMenu = () => {
 
   let { id } = useParams();
 
-  if (showModal) {
+  if (showModal || loading) {
     document.documentElement.style.overflow = "hidden";
   } else {
     document.documentElement.style.overflowY = "scroll";
@@ -71,7 +72,7 @@ const SingleRestaurantMenu = () => {
     fetchData();
   }, []);
 
-  if (loading) return <div>..Loading</div>;
+  if (loading) return <Loader />;
   return (
     <div className="px-10">
       <Breadcrumb userId={id} />
@@ -79,7 +80,7 @@ const SingleRestaurantMenu = () => {
       <div className="flex items-center justify-start flex-col lg:flex-row gap-10 pt-10">
         <img
           src={urlFor(singleRestaurant?.imageUrl).url()}
-          className="w-full lg:w-[15%]"
+          className="w-full lg:w-[15%] rounded-lg"
         />
 
         <div className="flex items-start flex-col gap-2 pb-2">
@@ -230,21 +231,25 @@ const SingleRestaurantMenu = () => {
               color: "white",
             }}
             key={item._id}
-            className="flex items-center justify-between border border-black/25 px-4 cursor-pointer rounded-xl shadow-md"
+            className="flex items-center justify-between border border-black/25  cursor-pointer rounded-xl shadow-md"
             onClick={() => {
               setSelectedMenuItem(item);
               setShowModal(true);
             }}
           >
             {/* Left Part (Info) */}
-            <div className="w-[60%]">
+            <div className="px-4 w-[60%]">
               <h1 className="font-Arimo">{item.name}</h1>
               <h1 className="font-Arimo">${item.price}</h1>
               <p className="font-fraunces">{item.desc}</p>
             </div>
-            {/* Food Image */}
-            <div className="w-[40%]">
-              <img src={urlFor(item?.imageUrl).url()} alt={item.name} />
+            {/* Right Part Food Image */}
+            <div className="w-[40%] h-full">
+              <img
+                src={urlFor(item?.imageUrl).url()}
+                alt={item.name}
+                className="w-full h-full object-cover rounded-lg"
+              />
             </div>
           </motion.div>
         ))}
